@@ -11,22 +11,26 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Nav } from "../components/mamina/Nav";
+import { Footer } from "../components/mamina/Footer";
+import { CursorGlow } from "../components/mamina/CursorGlow";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-obsidian px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="eyebrow">Error 404</p>
+        <h1 className="mt-4 font-display text-6xl text-cream">Página no encontrada</h1>
+        <p className="mt-4 text-sm leading-relaxed text-cream/60">
+          La experiencia o sala que buscas no existe o ha cambiado de ubicación.
         </p>
-        <div className="mt-6">
+        <div className="mt-8">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full border border-gold bg-gold/10 px-8 py-3 text-xs tracking-[0.25em] text-gold uppercase transition-all duration-300 hover:bg-gold hover:text-primary-foreground"
           >
-            Go home
+            Volver al Inicio
           </Link>
         </div>
       </div>
@@ -42,30 +46,27 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-obsidian px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <p className="eyebrow">Aviso</p>
+        <h1 className="mt-4 font-display text-4xl text-cream">Interrupción en la experiencia</h1>
+        <p className="mt-4 text-sm text-cream/60">Ocurrió un error inesperado al cargar la sala.</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full border border-gold bg-gold px-6 py-2.5 text-xs tracking-widest text-primary-foreground uppercase"
           >
-            Try again
+            Reintentar
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-full border border-gold/30 px-6 py-2.5 text-xs tracking-widest text-cream uppercase hover:border-gold"
           >
-            Go home
-          </a>
+            Ir al inicio
+          </Link>
         </div>
       </div>
     </div>
@@ -77,15 +78,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mamina Restobar — Lujo nocturno, coctelería de autor" },
+      { title: "Mamina Restobar — Lujo nocturno y Coctelería de autor en Ayacucho" },
       {
         name: "description",
         content:
-          "Mamina Restobar: coctelería de autor, cocina nocturna y zonas VIP. Reserva tu experiencia.",
+          "Mamina Restobar en Jr. José Olaya (Ayacucho): coctelería de autor, cocina de brasa, zonas VIP exclusivas y noches memorables.",
       },
       { name: "author", content: "Mamina Restobar" },
-      { property: "og:title", content: "Mamina Restobar" },
-      { property: "og:description", content: "Lujo nocturno, coctelería de autor y zonas VIP." },
+      { property: "og:title", content: "Mamina Restobar — Lujo nocturno en Ayacucho" },
+      {
+        property: "og:description",
+        content:
+          "Coctelería de autor, cocina nocturna y experiencias VIP en Jr. José Olaya, Ayacucho.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -94,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap",
       },
       {
         rel: "stylesheet",
@@ -112,11 +117,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es" className="dark scroll-smooth">
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="bg-obsidian text-foreground selection:bg-gold/30 selection:text-gold-soft antialiased">
         {children}
         <Scripts />
       </body>
@@ -129,8 +134,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col justify-between bg-obsidian">
+        <CursorGlow />
+        <Nav />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+        <Toaster position="bottom-right" richColors />
+      </div>
     </QueryClientProvider>
   );
 }
