@@ -7,13 +7,43 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+web_modules/
+
+# TypeScript
+*.tsbuildinfo
+
+# Build outputs
+build/Release
+dist/
+dist-ssr/
 .output
+out
+.next
+.nuxt
 .vinxi
 .tanstack/**
 .nitro
+
+# Vite
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Cache
+.cache
+.parcel-cache
+.temp
+**/.vitepress/dist
+**/.vitepress/cache
+
+# Environment variables
+.env
+.env.*
+!.env.example
 *.local
 
 # Wrangler / Cloudflare
@@ -23,6 +53,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.vscode-test
 .idea
 .DS_Store
 *.suo
